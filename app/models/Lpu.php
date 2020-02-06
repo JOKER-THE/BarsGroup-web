@@ -132,12 +132,13 @@ class Lpu
 	private function decorate($html, $array) :string
 	{
 		foreach ($array as $key => $item) {
-			$html .= '<tr>' .
-				'<td id="' . $item->hid . '" style="border: 1px solid grey;">' . $item->id . '</td>' .
-				'<td id="' . $item->hid . '" style="border: 1px solid grey;">' . $item->hid . '</td>' .
-				'<td id="' . $item->hid . '" style="border: 1px solid grey;">' . $item->full_name . '</td>' .
-				'<td id="' . $item->hid . '" style="border: 1px solid grey;">' . $item->address . '</td>' .
-				'<td id="' . $item->hid . '" style="border: 1px solid grey;">' . $item->phone . '</td>' .
+			$html .= '<tr id="' . $item->id . '" name="elem' . $item->hid . '" hid="' . $item->hid . '" hidden>' .
+				'<td><button name="button' . $item->id . '" onclick="getChild(' . $item->id . ')">Open/Closed</button></td>' .
+				'<td>' . $item->id . '</td>' .
+				'<td>' . $item->hid . '</td>' .
+				'<td>' . $item->full_name . '</td>' .
+				'<td>' . $item->address . '</td>' .
+				'<td>' . $item->phone . '</td>' .
 			'</tr>';
 
 			if (!empty($item->children)) {
