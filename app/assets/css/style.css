@@ -1,3 +1,16 @@
+button {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: transparent;
+  color: #669;
+  border: 2px solid #669;
+  border-radius: 4px;
+}
+button:hover {
+  color: #6699ff;
+  border: 2px solid #6699ff;
+}
 table {
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
   font-size: 14px;

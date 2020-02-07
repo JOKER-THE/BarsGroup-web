@@ -18,7 +18,7 @@
 		<div class="container">
 			<table>
 				<tr>
-					<th></th>
+					<th><button onclick="changeAll()">Развернуть/<br>свернуть</button></th>
 					<th>ID</th>
 					<th>HID</th>
 					<th>Наименование</th>
