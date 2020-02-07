@@ -22,8 +22,8 @@ class App
          */
         $path = $_SERVER['REQUEST_URI'];
         $pathParts = explode('/', $path);
-        $controller = $pathParts[1];
-        $action = $pathParts[2];
+        $controller = (empty($pathParts[1])) ? 'site' : $pathParts[1];
+        $action = (empty($pathParts[2])) ? 'index' : $pathParts[2];
 
         /**
          * Пространство имен для контроллеров и именование действий
