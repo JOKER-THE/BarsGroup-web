@@ -133,7 +133,7 @@ class Lpu
 	{
 		foreach ($array as $key => $item) {
 			$html .= '<tr id="' . $item->id . '" name="elem' . $item->hid . '" hid="' . $item->hid . '" hidden>' .
-				'<td><button name="button' . $item->id . '" onclick="getChild(' . $item->id . ')">Open/Closed</button></td>' .
+				'<td><button name="button' . $item->id . '" onclick="getChild(' . $item->id . ')"><span data-id="'. $item->id .'">+</span></button></td>' .
 				'<td>' . $item->id . '</td>' .
 				'<td>' . $item->hid . '</td>' .
 				'<td>' . $item->full_name . '</td>' .

@@ -35,6 +35,15 @@ element.forEach(function(item, i, element) {
  *
  */
 function getChild(id) {
+	var buttons = document.querySelectorAll('span[data-id="' + id + '"]');
+	var array = Array.prototype.slice.call(buttons);
+
+	if (array[0].lastChild.nodeValue === '+') {
+		array[0].lastChild.nodeValue = '-';
+	} else {
+		array[0].lastChild.nodeValue = '+';
+	}
+
 	var child = document.getElementsByName('elem' + id);
 	child.forEach(function(item, i, child) {
 		var attr = item.hasAttribute('hidden');

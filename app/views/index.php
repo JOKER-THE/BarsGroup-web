@@ -11,19 +11,23 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Тестовое задание | BarsGroup</title>
+    <link rel="stylesheet" type="text/css" href="/../app/assets/css/style.css">
 </head>
 <body>
 	<div class="index-page">
-		<table style="border: 1px solid grey;">
-			<tr>
-				<th style="border: 1px solid grey;">ID</th>
-				<th style="border: 1px solid grey;">HID</th>
-				<th style="border: 1px solid grey;">Наименование</th>
-				<th style="border: 1px solid grey;">Адрес</th>
-				<th style="border: 1px solid grey;">Телефон</th>
-			</tr>
-			<?= $model; ?>
-		</table>
+		<div class="container">
+			<table>
+				<tr>
+					<th></th>
+					<th>ID</th>
+					<th>HID</th>
+					<th>Наименование</th>
+					<th>Адрес</th>
+					<th>Телефон</th>
+				</tr>
+				<?= $model; ?>
+			</table>
+		</div>
 	</div>
 	<script src="/../app/assets/js/script.js"></script>
 </body>
