@@ -134,11 +134,10 @@ class Lpu
 		foreach ($array as $key => $item) {
 			$html .= '<tr id="' . $item->id . '" name="elem' . $item->hid . '" hid="' . $item->hid . '" hidden>' .
 				'<td><button name="button' . $item->id . '" onclick="getChild(' . $item->id . ')"><span data-id="'. $item->id .'">+</span></button></td>' .
-				'<td>' . $item->id . '</td>' .
-				'<td>' . $item->hid . '</td>' .
 				'<td>' . $item->full_name . '</td>' .
 				'<td>' . $item->address . '</td>' .
 				'<td>' . $item->phone . '</td>' .
+				'<td><a href="/site/update?id=' . $item->id . '">Изменить</a> <a href="/site/delete?id=' . $item->id . '">Удалить</a></td>' .
 			'</tr>';
 
 			if (!empty($item->children)) {

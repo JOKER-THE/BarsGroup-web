@@ -15,15 +15,24 @@
 </head>
 <body>
 	<div class="index-page">
+		<div class="nav">
+			<div class="container">
+				<div class="left">
+					<p>Тестовое задание для Bars.Group. Часть WEB</p>
+				</div>
+				<div class="right">
+					<a href="/site/create"><button class="btn">Добавить LPU</button></a>
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<table>
 				<tr>
 					<th><button onclick="changeAll()">Развернуть/<br>свернуть</button></th>
-					<th>ID</th>
-					<th>HID</th>
 					<th>Наименование</th>
 					<th>Адрес</th>
 					<th>Телефон</th>
+					<th>Управление</th>
 				</tr>
 				<?= $model; ?>
 			</table>
