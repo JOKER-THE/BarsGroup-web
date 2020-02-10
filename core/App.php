@@ -32,6 +32,13 @@ class App
         $controller = 'app\controllers\\' . ucfirst($controller) . 'Controller';
         $action = 'action' . ucfirst($action);
 
+        /**
+         * Отделение параметров
+         *
+         */
+        $action = explode('?', $action);
+        $action = $action[0];
+
         if (!class_exists($controller)) {
             throw new \ErrorException('Controller does not exist');
         }
@@ -46,6 +53,6 @@ class App
             throw new \ErrorException('action does not exist');
         }
 
-        $objController->$action();
+        call_user_func_array([$controller, $action], $_GET);
     }
 }

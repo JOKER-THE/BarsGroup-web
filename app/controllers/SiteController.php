@@ -37,17 +37,19 @@ class SiteController
     /**
      * Обновление данных конкретной Lpu
      *
+     * @param integer $id
      */
-    public function actionUpdate() :void
+    public function actionUpdate(int $id) :void
     {
-
+        
     }
 
     /**
      * Удаление данных конкретной Lpu
      *
+     * @param integer $id
      */
-    public function actionDelete() :void
+    public function actionDelete(int $id) :void
     {
 
     }
