@@ -18,10 +18,12 @@ class SiteController
     public function actionIndex() :void
     {
     	$model = new Lpu();
+        $list = $model->array;
     	$model = $model->read();
 
         View::render('index', [
-        	'model' => $model
+        	'model' => $model,
+            'list' => $list
         ]);
     }
 

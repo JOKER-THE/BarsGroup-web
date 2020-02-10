@@ -14,10 +14,17 @@ class Lpu
 	 */
 	public $file;
 
+	/**
+	 * @var array $array - массив данных, содержащий ассоциативный массив
+	 * ключ (ID) => наименование LPU
+	 */
+	public $array;
+
 	public function __construct()
 	{
 		$file = $this->loadFile();
 		$this->file = $this->createTree($file);
+		$this->array = $this->getIdNameAssoc($file);
 	}
 
 	/**
@@ -203,5 +210,29 @@ class Lpu
 		}
 
 		return $array;
+	}
+
+	/**
+	 * Формирует массив LPU по принципу
+	 * ключ => [ID, наименование]
+	 *
+	 * @param array $array
+	 *
+	 * @return array
+	 */
+	private function getIdNameAssoc($array) :array
+	{
+		$response = [];
+
+		foreach ($array as $key => $item) {
+			$elem = [
+				'id' => $item->id,
+				'name' => $item->full_name
+			];
+
+			array_push($response, $elem);
+		}
+
+		return $response;
 	}
 }
