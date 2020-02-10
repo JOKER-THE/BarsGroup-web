@@ -51,6 +51,9 @@ class SiteController
      */
     public function actionDelete(int $id) :void
     {
-
+        $model = new Lpu();
+        $model->delete($id);
+        
+        header('Location: /');
     }
 }
