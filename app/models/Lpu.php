@@ -68,9 +68,23 @@ class Lpu
 	 */
 	public function create($params)
 	{
-		var_dump('create');
-		var_dump($params);
-		die();
+		/**
+		 * Написать генератор ID
+		 *
+		 */
+		$params["id"] = '123123123123123';
+
+		if (empty($params["hid"])) {
+			$params["hid"] = null;
+		} elseif ($params["hid"] == "0") {
+			$params["hid"] = null;
+		}
+
+		$array = $this->arrayObj->getArray($this->file);
+		$item = (object) $params;
+		array_push($array, $item);
+
+		$this->save($array);
 	}
 
 	/**
