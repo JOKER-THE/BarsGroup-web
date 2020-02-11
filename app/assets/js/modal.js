@@ -3,6 +3,15 @@
  var span = document.getElementsByClassName("close_modal_window")[0];
 
  btn.onclick = function () {
+ 	document.getElementById('input-id').setAttribute('value', '');
+ 	document.getElementById('input-hid').setAttribute('value', '');
+ 	document.getElementById('input-name').setAttribute('value', '');
+ 	document.getElementById('input-address').setAttribute('value', '');
+ 	document.getElementById('input-phone').setAttribute('value', '');
+ 	var options = document.querySelectorAll('option');
+ 	options.forEach(function(item, i, options) {
+ 		item.removeAttribute('selected');
+ 	})
     modal.style.display = "block";
  }
 
