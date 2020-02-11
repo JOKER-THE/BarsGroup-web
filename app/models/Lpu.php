@@ -83,6 +83,14 @@ class Lpu
 	{
 		$id = (integer) $params["id"];
 
+		if ($params["hid"] == "0") {
+			$params["hid"] = null;
+		}
+
+		if ($params["hid"] == $id) {
+			throw new \ErrorException('Ошибка! Элемент не может быть дочерним сам себе');
+		}
+
 		$array = $this->arrayObj->getArray($this->file);
 		
 		foreach ($array as $key => $item) {
