@@ -77,12 +77,30 @@ class Lpu
 	 * Обновление данных объекта
 	 * Lpu в lpu.json
 	 *
+	 * @param array $params
 	 */
 	public function update($params)
 	{
-		var_dump('update');
-		var_dump($params);
-		die();
+		$id = (integer) $params["id"];
+
+		$array = $this->arrayObj->getArray($this->tree);
+		
+		foreach ($array as $key => $item) {
+			if($item->id == $id) {
+				break;
+			}
+		}
+		
+		if ($item->id != $id) {
+			throw new \ErrorException('Ошибка! Элемент не найден');
+		} else {
+			$array[$key]->id = $id;
+			$array[$key]->hid = $params["hid"];
+			$array[$key]->full_name = $params["full_name"];
+			$array[$key]->address = $params["address"];
+			$array[$key]->phone = $params["phone"];
+			$this->save($array);
+		}
 	}
 
 	/**
