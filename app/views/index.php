@@ -37,7 +37,7 @@
 										<select name="hid">
 											<option value="0"></option>
 											<?php foreach ($list as $key => $value) : ?>
-												<option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+												<option value="<?= $value['id'] ?>"><?= htmlentities($value['name']) ?></option>
 											<?php endforeach; ?>
 										</select>
 									</p>

@@ -172,12 +172,18 @@ class Lpu
 	private function decorate($html, $array) :string
 	{
 		foreach ($array as $key => $item) {
-			$html .= '<tr id="' . $item->id . '" name="elem' . $item->hid . '" hid="' . $item->hid . '" hidden>' .
-				'<td><button name="button' . $item->id . '" onclick="getChild(' . $item->id . ')"><span data-id="'. $item->id .'">+</span></button></td>' .
-				'<td>' . $item->full_name . '</td>' .
-				'<td>' . $item->address . '</td>' .
-				'<td>' . $item->phone . '</td>' .
-				'<td><a href="/site/update?id=' . $item->id . '">Изменить</a> <a href="/site/delete?id=' . $item->id . '">Удалить</a></td>' .
+			$id = htmlentities($item->id);
+			$hid = htmlentities($item->hid);
+			$name = htmlentities($item->full_name);
+			$address = htmlentities($item->address);
+			$phone = htmlentities($item->phone);
+
+			$html .= '<tr id="' . $id . '" name="elem' . $hid . '" hid="' . $hid . '" hidden>' .
+				'<td><button name="button' . $id . '" onclick="getChild(' . $id . ')"><span data-id="'. $id .'">+</span></button></td>' .
+				'<td>' . $name . '</td>' .
+				'<td>' . $address . '</td>' .
+				'<td>' . $phone . '</td>' .
+				'<td><a href="/site/update?id=' . $id . '">Изменить</a> <a href="/site/delete?id=' . $id . '">Удалить</a></td>' .
 			'</tr>';
 
 			if (!empty($item->children)) {
