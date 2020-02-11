@@ -180,10 +180,10 @@ class Lpu
 
 			$html .= '<tr id="' . $id . '" name="elem' . $hid . '" hid="' . $hid . '" hidden>' .
 				'<td><button name="button' . $id . '" onclick="getChild(' . $id . ')"><span data-id="'. $id .'">+</span></button></td>' .
-				'<td>' . $name . '</td>' .
-				'<td>' . $address . '</td>' .
-				'<td>' . $phone . '</td>' .
-				'<td><a href="/site/update?id=' . $id . '">Изменить</a> <a href="/site/delete?id=' . $id . '">Удалить</a></td>' .
+				'<td name="' . $name . '">' . $name . '</td>' .
+				'<td name="' . $address . '">' . $address . '</td>' .
+				'<td name="' . $phone . '">' . $phone . '</td>' .
+				'<td><a href="#" onclick="getData(' . $id . ')">Изменить</a> <a href="/site/delete?id=' . $id . '">Удалить</a></td>' .
 			'</tr>';
 
 			if (!empty($item->children)) {

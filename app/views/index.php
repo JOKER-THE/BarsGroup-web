@@ -5,7 +5,7 @@
  */
 
 /**
- * @var array $lsit - массив данных
+ * @var array $list - массив данных
  */
 ?>
 
@@ -32,18 +32,19 @@
 							<p>Добавить LPU<p>
 							<form action="site/create" method="POST">
 								<div class="form-group">
+									<p><input id="input-id" type="text" name="id" required></p>
 									<p>
 										<small><i>Выберите главное здание (при наличии)</i></small>
-										<select name="hid">
-											<option value="0"></option>
+										<select id="input-hid" name="hid">
+											<option id="option-0" value="0"></option>
 											<?php foreach ($list as $key => $value) : ?>
-												<option value="<?= $value['id'] ?>"><?= htmlentities($value['name']) ?></option>
+												<option id="option-<?= $value['id'] ?>" value="<?= $value['id'] ?>"><?= htmlentities($value['name']) ?></option>
 											<?php endforeach; ?>
 										</select>
 									</p>
-									<p><input type="text" name="full_name" placeholder="Наименование" required></p>
-									<p><input type="text" name="address" placeholder="Адрес" required></p>
-									<p><input type="text" name="phone" placeholder="Телефон"></p>
+									<p><input id="input-name" type="text" name="full_name" placeholder="Наименование" required></p>
+									<p><input id="input-address" type="text" name="address" placeholder="Адрес" required></p>
+									<p><input id="input-phone" type="text" name="phone" placeholder="Телефон"></p>
 									<button class="btn" type="submit">Сохранить</button>
 								</div>
 							</form>
