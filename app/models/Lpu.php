@@ -2,6 +2,10 @@
 
 namespace app\models;
 
+use app\services\ArrayObj;
+use app\services\Table;
+use app\services\Tree;
+
 /**
  * Сущность Lpu, необходимая для получения
  * и обработкиданных из файла lpu.json
@@ -20,11 +24,31 @@ class Lpu
 	 */
 	public $array;
 
+	/**
+	 * @var object $table
+	 */
+	public $table;
+
+	/**
+	 * @var object $arrayObj
+	 */
+	public $arrayObj;
+
+	/**
+	 * @var object $tree
+	 */
+	public $tree;
+
 	public function __construct()
 	{
 		$file = $this->loadFile();
-		$this->file = $this->createTree($file);
-		$this->array = $this->getIdNameAssoc($file);
+
+		$this->arrayObj = new ArrayObj();
+		$this->table = new Table();
+		$this->tree = new Tree();
+
+		$this->file = $this->tree->createTree($file);
+		$this->array = $this->arrayObj->getIdNameAssoc($file);
 	}
 
 	/**
@@ -33,7 +57,7 @@ class Lpu
 	 */
 	public function read() :string
 	{
-		$table = $this->decorate($html = '', $this->file);
+		$table = $this->table->decorate($html = '', $this->file);
 		return $table;
 	}
 
@@ -65,7 +89,7 @@ class Lpu
 	 */
 	public function delete(int $id)
 	{
-		$array = $this->getArray($this->file);
+		$array = $this->arrayObj->getArray($this->file);
 		
 		foreach ($array as $key => $item) {
 			if($item->id == $id) {
@@ -112,133 +136,5 @@ class Lpu
 
 		$arr = (object) $arr;
 		file_put_contents(__DIR__ . '/../../lpu.json', json_encode($arr));
-	}
-
-	/**
-	 * Формирование древовидной структуры объектов
-	 *
-	 * @param array $arr
-	 *
-	 * @return array
-	 */
-	private function createTree(array $arr) :array
-	{
-		$parent = [];
-
-		foreach ($arr as $key => $item) {
-			$parent[$item->hid][$item->id] = $item;
-		}
-
-		$treeElem = $parent[''];
-		$tree = $this->generateTree($treeElem, $parent);
-
-		return $tree;
-	}
-	
-	/**
-	 * Генерация дерева путем добавления 
-	 * дочерних элементов в родителя
-	 *
-	 * @param array $treeElem
-	 * @param array $parent
-	 *
-	 * @return array
-	 */
-	private function generateTree($treeElem, $parent) :array
-	{
- 		foreach($treeElem as $key => $item) {
-
- 			if(!isset($item->children)) {
- 				$treeElem[$key]->children = array();
- 			}
-
- 			if(array_key_exists($key, $parent)) {
- 				$treeElem[$key]->children = $parent[$key];
- 				$this->generateTree($treeElem[$key]->children, $parent);
- 			}
- 		}
-
- 		return $treeElem;
-	}
-
-	/**
-	 * Оформление таблицы с вложенными элементами
-	 *
-	 * @param string $html
-	 * @param array $array
-	 *
-	 * @return string
-	 */
-	private function decorate($html, $array) :string
-	{
-		foreach ($array as $key => $item) {
-			$id = htmlentities($item->id);
-			$hid = htmlentities($item->hid);
-			$name = htmlentities($item->full_name);
-			$address = htmlentities($item->address);
-			$phone = htmlentities($item->phone);
-
-			$html .= '<tr id="' . $id . '" name="elem' . $hid . '" hid="' . $hid . '" hidden>' .
-				'<td><button name="button' . $id . '" onclick="getChild(' . $id . ')"><span data-id="'. $id .'">+</span></button></td>' .
-				'<td name="' . $name . '">' . $name . '</td>' .
-				'<td name="' . $address . '">' . $address . '</td>' .
-				'<td name="' . $phone . '">' . $phone . '</td>' .
-				'<td><a href="#" onclick="getData(' . $id . ')">Изменить</a> <a href="/site/delete?id=' . $id . '">Удалить</a></td>' .
-			'</tr>';
-
-			if (!empty($item->children)) {
-				$html = $this->decorate($html, $item->children);
-			}
-		}
-
-		return $html;
-	}
-
-	/**
-	 * Восстановление данных из дерева в массив
-	 * с сохранением подмассивов children
-	 *
-	 * @param array $tree
-	 *
-	 * @return array
-	 */
-	private function getArray($tree) :array
-	{
-		$array = [];
-
-		foreach ($tree as $key => $item) {
-			array_push($array, $item);
-
-			if(!empty($item->children)) {
-				$children = $this->getArray($item->children);
-				$array = array_merge($array, $children);
-			}
-		}
-
-		return $array;
-	}
-
-	/**
-	 * Формирует массив LPU по принципу
-	 * ключ => [ID, наименование]
-	 *
-	 * @param array $array
-	 *
-	 * @return array
-	 */
-	private function getIdNameAssoc($array) :array
-	{
-		$response = [];
-
-		foreach ($array as $key => $item) {
-			$elem = [
-				'id' => $item->id,
-				'name' => $item->full_name
-			];
-
-			array_push($response, $elem);
-		}
-
-		return $response;
 	}
 }
