@@ -66,9 +66,11 @@ class Lpu
 	 * в lpu.json
 	 *
 	 */
-	public function create()
+	public function create($params)
 	{
-		
+		var_dump('create');
+		var_dump($params);
+		die();
 	}
 
 	/**
@@ -76,9 +78,11 @@ class Lpu
 	 * Lpu в lpu.json
 	 *
 	 */
-	public function update()
+	public function update($params)
 	{
-		
+		var_dump('update');
+		var_dump($params);
+		die();
 	}
 
 	/**

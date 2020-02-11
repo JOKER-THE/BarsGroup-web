@@ -28,22 +28,21 @@ class SiteController
     }
 
     /**
-     * Создание нового объекта Lpu
+     * Сохранение объекта Lpu
      *
      */
-    public function actionCreate() :void
+    public function actionSave() :void
     {
+        $params = $_POST;
+        $model = new Lpu();
 
-    }
+        if (empty($params["id"])) {
+            $model->create($params);
+        } else {
+            $model->update($params);
+        }
 
-    /**
-     * Обновление данных конкретной Lpu
-     *
-     * @param integer $id
-     */
-    public function actionUpdate(int $id) :void
-    {
-        
+        header('Location: /');
     }
 
     /**

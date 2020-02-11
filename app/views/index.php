@@ -30,9 +30,9 @@
 						<div class="modal_content">
 							<span class="close_modal_window">×</span>
 							<p>Добавить LPU<p>
-							<form action="site/create" method="POST">
+							<form action="site/save" method="POST">
 								<div class="form-group">
-									<p><input id="input-id" type="text" name="id" required></p>
+									<p><input id="input-id" type="number" name="id" hidden=""></p>
 									<p>
 										<small><i>Выберите главное здание (при наличии)</i></small>
 										<select id="input-hid" name="hid">
