@@ -83,7 +83,7 @@ class Lpu
 	{
 		$id = (integer) $params["id"];
 
-		$array = $this->arrayObj->getArray($this->tree);
+		$array = $this->arrayObj->getArray($this->file);
 		
 		foreach ($array as $key => $item) {
 			if($item->id == $id) {
