@@ -42,10 +42,11 @@
 											<?php endforeach; ?>
 										</select>
 									</p>
-									<p><input id="input-name" type="text" name="full_name" placeholder="Наименование" required></p>
-									<p><input id="input-address" type="text" name="address" placeholder="Адрес" required></p>
+									<p><input id="input-name" type="text" name="full_name" placeholder="Наименование*" required></p>
+									<p><input id="input-address" type="text" name="address" placeholder="Адрес*" required></p>
 									<p><input id="input-phone" type="text" name="phone" placeholder="Телефон"></p>
 									<button class="btn" type="submit">Сохранить</button>
+									<p><small><i>Поля со звездочкой (*) обязательны для заполнения</i></small></p>
 								</div>
 							</form>
 						</div>
