@@ -72,7 +72,7 @@ class Lpu
 		 * Написать генератор ID
 		 *
 		 */
-		$params["id"] = '123123123123123';
+		$params["id"] = $this->getId();
 
 		if (empty($params["hid"])) {
 			$params["hid"] = null;
@@ -180,5 +180,24 @@ class Lpu
 
 		$arr = (object) $arr;
 		file_put_contents(__DIR__ . '/../../lpu.json', json_encode($arr));
+	}
+
+	/**
+	 * Генератор ID для Lpu
+	 *
+	 * @return integer
+	 */
+	private function getId() :int
+	{
+		$id = rand(10000000, 99999999);
+		$array = $this->arrayObj->getArray($this->file);
+
+		foreach ($array as $key => $item) {
+			if($item->id == $id) {
+				$this->getId();
+			}
+		}
+		
+		return $id;
 	}
 }
